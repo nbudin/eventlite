@@ -1,47 +1,48 @@
 module ApplicationHelper
   def navigation_bar
-    if @cms_page
-      navigation_presenter = CmsSiteNavigationPresenter.new(@cms_page.site, @cms_page)
-      render partial: 'layouts/cms_navigation_bar', locals: { cms_site: @cms_page.site, navigation_presenter: navigation_presenter }
+    if @event
+      navigation_items = @event.navigation_items.root.includes(:page, children: :page)
+      render partial: 'layouts/cms_navigation_bar', locals: { navigation_items: navigation_items }
     else
       render partial: 'layouts/non_cms_navigation_bar'
     end
   end
 
   def render_navigation_item(item)
-    case item
-    when CmsSiteNavigationPresenter::NavigationLink then render_navigation_link(item)
-    when CmsSiteNavigationPresenter::NavigationSection then render_navigation_section(item)
+    if item.children.any?
+      render_navigation_section(item)
+    else
+      render_navigation_link(item)
     end
   end
 
   def render_navigation_section(section)
-    content_tag(:li, class: 'dropdown') do
+    content_tag(:li, class: 'nav-item dropdown') do
       safe_join([
-        content_tag(:a, class: "dropdown-toggle", "data-toggle" => "dropdown", role: "button", "aria-haspopup" => "true", "aria-expanded" => "false") do
-          safe_join([
-            section.cms_page.label,
-            ' ',
-            content_tag(:span, '', class: 'caret')
-          ])
-        end,
+        content_tag(:a, section.title, class: "nav-link dropdown-toggle", "data-toggle" => "dropdown", role: "button", "aria-haspopup" => "true", "aria-expanded" => "false"),
         content_tag(:ul, class: 'dropdown-menu') do
-          safe_join(section.items.map { |item| render_navigation_link(item) })
+          safe_join(section.children.map { |item| render_navigation_link(item) })
         end
       ])
     end
   end
 
   def render_navigation_link(item)
-    content_tag(:li, class: (item.is_active ? 'active' : '')) do
-      link_to item.cms_page.url(:relative) do
+    is_active = navigation_item_is_active?(item)
+
+    content_tag(:li, class: (is_active ? 'nav-item active' : 'nav-item')) do
+      link_to event_page_path(@event, item.page), class: 'nav-link' do
         safe_join(
           [
-            item.cms_page.label,
-            (item.is_active ? content_tag(:span, ' (current)', class: 'sr-only') : nil)
+            item.title,
+            (is_active ? content_tag(:span, ' (current)', class: 'sr-only') : nil)
           ].compact
         )
       end
     end
+  end
+
+  def navigation_item_is_active?(item)
+    params[:controller] == 'pages' && params[:action] == 'show' && @page == item.page
   end
 end

@@ -80,8 +80,8 @@ class PagesController < ApplicationController
 
   # See above comment on the before_action for this.
   def redirect_if_root_page
-    if @page == convention.root_page
-      redirect_to root_url
+    if @page == @event.root_page
+      redirect_to @event
     end
   end
 
