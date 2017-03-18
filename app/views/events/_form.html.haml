@@ -4,4 +4,8 @@
   = f.datetime_field :start_time
   = f.datetime_field :end_time
 
-  = f.submit
+  = f.submit class: 'btn btn-primary'
+
+  - if f.object.persisted?
+    .float-right
+      = link_to "Delete Event", f.object, method: 'DELETE', "data-confirm" => "Are you sure?  This will remove all content and ticket data associated with this event!", class: 'btn btn-danger'

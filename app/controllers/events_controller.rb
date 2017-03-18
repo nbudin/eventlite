@@ -5,7 +5,12 @@ class EventsController < ApplicationController
   load_and_authorize_resource find_by: 'slug'
   respond_to :html
 
+  layout 'admin', only: [:edit]
+
   def index
+  end
+
+  def show
   end
 
   def new
@@ -16,7 +21,17 @@ class EventsController < ApplicationController
     respond_with @event
   end
 
-  def show
+  def edit
+  end
+
+  def update
+    @event.save
+    respond_with @event, location: event_admin_path(@event)
+  end
+
+  def destroy
+    @event.destroy
+    redirect_to root_path
   end
 
   private
