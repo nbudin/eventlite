@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Eventlite</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+  </head>
+
+  <body>
+    <%= cms_navigation_bar %>
+
+    <% if notice.present? -%>
+      <div class="alert alert-success"><%= notice %></div>
+    <% end -%>
+    <% if alert.present? -%>
+      <div class="alert alert-danger"><%= alert %></p>
+    <% end -%>
+
+    <%= yield %>
+  </body>
+</html>
