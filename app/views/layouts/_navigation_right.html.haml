@@ -4,8 +4,8 @@
       %a.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
         = current_user.email
       .dropdown-menu
-        - if current_user.admin?
-          = link_to "Admin", '#', class: 'dropdown-item'
+        - if current_user.admin? && @event
+          = link_to "Admin", event_admin_path(@event), class: 'dropdown-item'
         = link_to "Log out", destroy_user_session_path, method: 'DELETE', class: 'dropdown-item'
   - else
     %li= link_to "Log in", new_user_session_path, class: 'nav-link'

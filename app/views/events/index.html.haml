@@ -4,3 +4,6 @@
   %ul
     - @events.each do |event|
       %li= link_to event.name, event
+
+  - if can? :create, Event
+    = link_to "New event", new_event_path, class: 'btn btn-primary'

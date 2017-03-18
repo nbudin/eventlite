@@ -1,0 +1,30 @@
+- if @page.errors.any?
+  #error_explanation
+    %h2
+      = pluralize(@page.errors.count, "error")
+      prohibited this page from being saved:
+
+    %ul
+      - @page.errors.full_messages.each do |msg|
+        %li= msg
+
+= f.text_field :name
+= f.text_field :slug, style: "font-family: monospace;"
+.row
+  .col-lg-6
+    = f.text_area :content, :style => "font-family: monospace; min-height: 8em;", :class => "cadmus-previewable-html", :"data-preview-in" => "html-preview"
+  .col-lg-6
+    .card.card-outline-secondary.my-4
+      .card-header Preview
+      .card-block
+        #html-preview
+
+= f.submit class: "btn btn-primary"
+
+= javascript_include_tag "cadmus.previewablehtml.js"
+:javascript
+  $(document).ready(function(){
+    $('.cadmus-previewable-html').cadmusPreviewableHtml();
+  });
+
+

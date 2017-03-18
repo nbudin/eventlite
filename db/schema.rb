@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170318164518) do
+ActiveRecord::Schema.define(version: 20170318175639) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,21 @@ ActiveRecord::Schema.define(version: 20170318164518) do
     t.integer  "length_seconds"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.string   "slug",           null: false
+    t.integer  "root_page_id"
+    t.index ["root_page_id"], name: "index_events_on_root_page_id", using: :btree
+    t.index ["slug"], name: "index_events_on_slug", unique: true, using: :btree
+  end
+
+  create_table "pages", force: :cascade do |t|
+    t.text     "name"
+    t.string   "slug"
+    t.text     "content"
+    t.integer  "parent_id"
+    t.string   "parent_type"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["parent_type", "parent_id", "slug"], name: "index_pages_on_parent_type_and_parent_id_and_slug", unique: true, using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -41,4 +56,5 @@ ActiveRecord::Schema.define(version: 20170318164518) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "events", "pages", column: "root_page_id"
 end

@@ -21,4 +21,7 @@
           %button.close{type: 'button', "data-dismiss" => "alert", "aria-label" => "Close"}
             %span{"aria-hidden" => "true"} &times;
           = alert
-    = yield
+    - if content_for?(:content)
+      = yield(:content)
+    - else
+      = yield

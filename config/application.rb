@@ -9,7 +9,7 @@ Bundler.require(*Rails.groups)
 module Eventlite
   class Application < Rails::Application
     config.generators do |generate|
-      generate.fixture false
+      generate.fixtures false
       generate.assets false
     end
 

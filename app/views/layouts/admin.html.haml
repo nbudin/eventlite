@@ -1,0 +1,13 @@
+- content_for :content do
+  .container-fluid
+    .row
+      .col-3.d-flex.flex-column
+        .card.card-inverse{style: "background-color: #333; border-color: #333; flex-grow: 1;"}
+          .card-block
+            %h3.card-title Admin
+            %ul
+              %li= link_to "Pages", event_pages_path(@event)
+      .col
+        = yield
+
+= render template: 'layouts/application'
