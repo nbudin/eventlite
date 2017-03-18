@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  parent: one
+  uploader: one
+  file: MyString
+
+two:
+  parent: two
+  uploader: two
+  file: MyString

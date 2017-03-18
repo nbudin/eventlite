@@ -21,8 +21,11 @@ gem 'responders'
 
 gem 'bootstrap_form', github: 'bootstrap-ruby/rails-bootstrap-forms', branch: 'bootstrap-v4'
 gem 'bootstrap', '~> 4.0.0.alpha6'
+gem "font-awesome-rails"
 gem 'cadmus'
 gem 'haml'
+
+gem 'carrierwave'
 
 gem 'rails-assets-tether', source: 'https://rails-assets.org'
 

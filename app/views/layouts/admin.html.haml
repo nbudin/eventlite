@@ -7,6 +7,7 @@
             %h3.card-title Admin
             %ul
               %li= link_to "Pages", event_pages_path(@event)
+              %li= link_to "Files", event_cms_files_path(@event)
       .col
         = yield
 
