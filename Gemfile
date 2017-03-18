@@ -13,13 +13,17 @@ gem 'uglifier', '>= 1.3.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+gem 'coffee-script'
 
 gem 'devise'
 gem 'cancancan'
 
-gem 'bootstrap-form'
+gem 'bootstrap_form', github: 'bootstrap-ruby/rails-bootstrap-forms', branch: 'bootstrap-v4'
 gem 'bootstrap', '~> 4.0.0.alpha6'
 gem 'cadmus'
+gem 'haml'
+
+gem 'rails-assets-tether', source: 'https://rails-assets.org'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

@@ -1,0 +1,7 @@
+%nav.navbar.navbar-light.navbar-toggleable-md.bg-faded
+  = render partial: 'layouts/navigation_toggle'
+  = link_to "Eventlite", root_url, class: 'navbar-brand'
+
+  #main-navbar-collapse-1.collapse.navbar-collapse
+    %ul.nav.navbar-nav.mr-auto
+    = render partial: 'layouts/navigation_right'

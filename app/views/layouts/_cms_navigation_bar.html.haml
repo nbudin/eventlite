@@ -1,0 +1,10 @@
+%nav.navbar.navbar-default.navbar-static-top
+  .container-fluid
+    .navbar-header
+      = render partial: 'layouts/navigation_toggle'
+      = link_to cms_site.label, cms_site.pages.root.url(:relative), class: 'navbar-brand'
+    #main-navbar-collapse-1.collapse.navbar-collapse
+      %ul.nav.navbar-nav
+        - navigation_presenter.navigation_items.each do |item|
+          = render_navigation_item item
+      = render partial: 'layouts/navigation_right'

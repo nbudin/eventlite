@@ -1,0 +1,24 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title Eventlite
+    %meta{:charset => "utf-8"}/
+    %meta{:content => "width=device-width, initial-scale=1, shrink-to-fit=no", :name => "viewport"}/
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application', media: 'all'
+    = javascript_include_tag 'application'
+  %body
+    .mb-4
+      = navigation_bar
+      - if notice.present?
+        .alert.alert-success.alert-dismissible
+          %button.close{type: 'button', "data-dismiss" => "alert", "aria-label" => "Close"}
+            %span{"aria-hidden" => "true"} &times;
+          = notice
+      - if alert.present?
+        .alert.alert-danger.alert-dismissible
+          %button.close{type: 'button', "data-dismiss" => "alert", "aria-label" => "Close"}
+            %span{"aria-hidden" => "true"} &times;
+          = alert
+    = yield

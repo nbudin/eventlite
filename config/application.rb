@@ -8,9 +8,10 @@ Bundler.require(*Rails.groups)
 
 module Eventlite
   class Application < Rails::Application
-    # Settings in config/environments/* take precedence over those specified here.
-    # Application configuration should go into files in config/initializers
-    # -- all .rb files in that directory are automatically loaded.
+    config.generators do |generate|
+      generate.fixture false
+      generate.assets false
+    end
 
     config.autoload_paths << File.expand_path('app/presenters', Rails.root)
   end
