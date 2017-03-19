@@ -1,0 +1,8 @@
+= bootstrap_form_for [@event, navigation_item], html: { class: 'navigation_item_form' } do |f|
+  = f.hidden_field :parent_id
+  - unless navigation_item.parent || navigation_item.persisted?
+    = f.select :item_type, ['section', 'link']
+  = f.text_field :title
+  - if navigation_item.item_type == 'link' || (!navigation_item.parent && navigation_item.new_record?)
+    = f.collection_select :page_id, @event.pages.order(:name), :id, :name, prompt: ''
+  = f.submit class: 'btn btn-primary'

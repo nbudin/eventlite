@@ -1,7 +1,7 @@
 module ApplicationHelper
   def navigation_bar
     if @event
-      navigation_items = @event.navigation_items.root.includes(:page, children: :page)
+      navigation_items = @event.navigation_items.root.includes(:page, children: :page).order(:position)
       render partial: 'layouts/cms_navigation_bar', locals: { navigation_items: navigation_items }
     else
       render partial: 'layouts/non_cms_navigation_bar'
@@ -9,10 +9,9 @@ module ApplicationHelper
   end
 
   def render_navigation_item(item)
-    if item.children.any?
-      render_navigation_section(item)
-    else
-      render_navigation_link(item)
+    case item.item_type
+    when 'section' then render_navigation_section(item)
+    when 'link' then render_navigation_link(item)
     end
   end
 
@@ -21,7 +20,7 @@ module ApplicationHelper
       safe_join([
         content_tag(:a, section.title, class: "nav-link dropdown-toggle", "data-toggle" => "dropdown", role: "button", "aria-haspopup" => "true", "aria-expanded" => "false"),
         content_tag(:ul, class: 'dropdown-menu') do
-          safe_join(section.children.map { |item| render_navigation_link(item) })
+          safe_join(section.children.sort_by(&:position).map { |item| render_navigation_link(item) })
         end
       ])
     end

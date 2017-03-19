@@ -3,7 +3,12 @@ Rails.application.routes.draw do
 
   resources :events do
     get 'admin' => 'admin#index'
-    resources :cms_files
+    resources :cms_files, only: [:index, :create, :destroy]
+    resources :navigation_items do
+      collection do
+        patch :sort
+      end
+    end
 
     nested do
       cadmus_pages

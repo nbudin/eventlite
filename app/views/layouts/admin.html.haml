@@ -9,6 +9,7 @@
               %li= link_to "Event settings", edit_event_path(@event)
               %li= link_to "Pages", event_pages_path(@event)
               %li= link_to "Files", event_cms_files_path(@event)
+              %li= link_to "Navigation bar", event_navigation_items_path(@event)
       .col
         = yield
 

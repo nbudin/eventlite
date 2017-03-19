@@ -1,0 +1,23 @@
+.media
+  .media-body
+    %h1 Navigation #{@navigation_item.item_type}: #{@navigation_item.title}
+  = link_to "Delete", [@event, @navigation_item], method: 'DELETE', "data-confirm" => "Are you sure you want to delete this navigation #{@navigation_item.item_type}?", class: 'btn btn-danger'
+
+.card
+  .card-header Settings
+  .card-block
+    = render partial: 'form', locals: { navigation_item: @navigation_item }
+
+- if @navigation_item.item_type == 'section'
+  .card.mt-4
+    .card-header Links
+    .card-block
+      %ul
+        - @navigation_item.children.order(:position).each do |item|
+          %li
+            = link_to item.title, [:edit, @event, item]
+
+  .card.mt-4
+    .card-header Add a link to this section
+    .card-block
+      = render partial: 'form', locals: { navigation_item: @navigation_item.children.new }
