@@ -13,6 +13,7 @@ module Eventlite
       generate.assets false
     end
 
+    config.autoload_paths << File.expand_path('app/liquid', Rails.root)
     config.autoload_paths << File.expand_path('app/presenters', Rails.root)
   end
 end

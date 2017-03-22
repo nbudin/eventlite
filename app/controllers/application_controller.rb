@@ -11,4 +11,8 @@ class ApplicationController < ActionController::Base
       redirect_to new_user_session_url, :alert => "Please log in to view this page."
     end
   end
+
+  def liquid_registers
+    { 'parent' => @event }
+  end
 end
