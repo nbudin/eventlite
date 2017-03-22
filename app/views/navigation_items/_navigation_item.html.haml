@@ -1,0 +1,10 @@
+%li.list-group-item{"data-navigation-item-id" => navigation_item.id}
+  .row.w-100
+    .col.drag-handle{style: 'flex-shrink: 1; flex-grow: 0;'}
+      = fa_icon 'bars'
+    .col
+      %strong #{navigation_item.item_type.humanize}:
+      = navigation_item.title
+    .col.text-right
+      = link_to "Edit", [:edit, @event, navigation_item], class: 'btn btn-secondary btn-sm'
+      = link_to "Delete", [@event, navigation_item], method: 'DELETE', "data-confirm" => "Are you sure you want to delete this navigation #{navigation_item.item_type}?", class: 'btn btn-danger btn-sm'
