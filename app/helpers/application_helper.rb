@@ -54,4 +54,12 @@ module ApplicationHelper
 
     link_to title, path, class: classes.join(' ')
   end
+
+  def canonical_page_path(page)
+    if page == page.parent.root_page
+      polymorphic_url(page.parent, routing_type: :path)
+    else
+      polymorphic_url([page.parent, page], routing_type: :path)
+    end
+  end
 end
