@@ -13,6 +13,8 @@ class PagesController < ApplicationController
   load_resource :event, find_by: :slug
   layout 'admin', except: [:root, :show]
 
+  respond_to :html
+
   include Cadmus::PagesController
 
   # In the case of the root action, we'll need to load the root page from the database before
@@ -36,6 +38,16 @@ class PagesController < ApplicationController
   # @page in a before filter, we can just run the show action.  Sweet!
   def root
     show
+  end
+
+  def update
+    @page.update_attributes(page_params)
+    respond_with @page, location: url_for(action: 'index')
+  end
+
+  def create
+    @page = page_scope.create(page_params)
+    respond_with @page, location: url_for(action: 'index')
   end
 
   protected
