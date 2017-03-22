@@ -12,7 +12,7 @@
 = f.text_field :slug, style: "font-family: monospace;"
 .row
   .col-lg-6
-    = f.text_area :content, :style => "font-family: monospace; min-height: 8em;", :class => "cadmus-previewable-html", :"data-preview-in" => "html-preview"
+    = find_and_preserve(f.text_area(:content, :style => "font-family: monospace; min-height: 8em;", :class => "cadmus-previewable-html", :"data-preview-in" => "html-preview"))
   .col-lg-6
     .card.card-outline-secondary.my-4
       .card-header Preview
