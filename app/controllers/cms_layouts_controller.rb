@@ -33,6 +33,6 @@ class CmsLayoutsController < ApplicationController
   private
 
   def cms_layout_params
-    params.require(:cms_layout).permit(:name, :content)
+    params.require(:cms_layout).permit(:name, :content, :navbar_classes)
   end
 end

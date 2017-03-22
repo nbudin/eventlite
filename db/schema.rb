@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170322034629) do
+ActiveRecord::Schema.define(version: 20170322212004) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20170322034629) do
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "navbar_classes"
     t.index ["parent_type", "parent_id"], name: "index_cms_layouts_on_parent_type_and_parent_id"
   end
 

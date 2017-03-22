@@ -1,10 +1,12 @@
 module ApplicationHelper
-  def navigation_bar
+  def navigation_bar(navbar_classes = nil)
+    navbar_classes ||= 'navbar-light bg-faded'
+
     if @event
       navigation_items = @event.navigation_items.root.includes(:page, children: :page).order(:position)
-      render partial: 'layouts/cms_navigation_bar', locals: { navigation_items: navigation_items }
+      render partial: 'layouts/cms_navigation_bar', locals: { navigation_items: navigation_items, navbar_classes: navbar_classes }
     else
-      render partial: 'layouts/non_cms_navigation_bar'
+      render partial: 'layouts/non_cms_navigation_bar', locals: { navbar_classes: navbar_classes }
     end
   end
 
