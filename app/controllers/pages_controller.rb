@@ -42,12 +42,22 @@ class PagesController < ApplicationController
 
   def update
     @page.update_attributes(page_params)
-    respond_with @page, location: url_for(action: 'index')
+
+    if @page.save
+      redirect_to event_pages_path(@event)
+    else
+      render template: 'cadmus/pages/edit'
+    end
   end
 
   def create
     @page = page_scope.create(page_params)
-    respond_with @page, location: url_for(action: 'index')
+
+    if @page.save
+      redirect_to event_pages_path(@event)
+    else
+      render template: 'cadmus/pages/new'
+    end
   end
 
   protected
