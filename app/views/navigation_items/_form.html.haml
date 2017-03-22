@@ -1,3 +1,5 @@
+/ = react_component "NavigationItemForm", initialNavigationItem: { parent_id: navigation_item.parent_id, item_type: navigation_item.item_type, title: navigation_item.title }, isNew: navigation_item.new_record?, pages: @event.pages
+
 = bootstrap_form_for [@event, navigation_item], html: { class: 'navigation_item_form' } do |f|
   = f.hidden_field :parent_id
   - unless navigation_item.parent || navigation_item.persisted?
