@@ -11,7 +11,7 @@ module ApplicationHelper
   def render_navigation_item(item)
     case item.item_type
     when 'section' then render_navigation_section(item)
-    when 'link' then render_navigation_link(item)
+    when 'link' then render_navigation_link(item, 'nav-item nav-link')
     end
   end
 
@@ -19,25 +19,26 @@ module ApplicationHelper
     content_tag(:li, class: 'nav-item dropdown') do
       safe_join([
         content_tag(:a, section.title, class: "nav-link dropdown-toggle", "data-toggle" => "dropdown", role: "button", "aria-haspopup" => "true", "aria-expanded" => "false"),
-        content_tag(:ul, class: 'dropdown-menu') do
-          safe_join(section.children.sort_by(&:position).map { |item| render_navigation_link(item) })
+        content_tag(:div, class: 'dropdown-menu') do
+          safe_join(section.children.sort_by(&:position).map { |item| render_navigation_link(item, 'dropdown-item') })
         end
       ])
     end
   end
 
-  def render_navigation_link(item)
+  def render_navigation_link(item, item_class)
     is_active = navigation_item_is_active?(item)
 
-    content_tag(:li, class: (is_active ? 'nav-item active' : 'nav-item')) do
-      link_to event_page_path(@event, item.page), class: 'nav-link' do
-        safe_join(
-          [
-            item.title,
-            (is_active ? content_tag(:span, ' (current)', class: 'sr-only') : nil)
-          ].compact
-        )
-      end
+    classes = [item_class]
+    classes << 'active' if is_active
+
+    link_to event_page_path(@event, item.page), class: classes.join(' ') do
+      safe_join(
+        [
+          item.title,
+          (is_active ? content_tag(:span, ' (current)', class: 'sr-only') : nil)
+        ].compact
+      )
     end
   end
 
