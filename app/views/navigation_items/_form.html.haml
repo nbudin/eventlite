@@ -6,5 +6,5 @@
     = f.select :item_type, ['section', 'link']
   = f.text_field :title
   - if navigation_item.item_type == 'link' || (!navigation_item.parent && navigation_item.new_record?)
-    = f.collection_select :page_id, @event.pages.order(:name), :id, :name, prompt: ''
+    = f.collection_select :page_id, @event.pages.order(:name), :id, :name, include_blank: true
   = f.submit class: 'btn btn-primary'

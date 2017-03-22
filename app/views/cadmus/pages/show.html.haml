@@ -1,0 +1,11 @@
+- page_content = cadmus_renderer.render(@page.liquid_template, :html)
+
+- if @page.cms_layout
+  - head_content = render(partial: 'layouts/head')
+  - assigns = { 'content_for_head' => head_content, 'content_for_navbar' => navigation_bar, 'content_for_layout' => page_content, 'page' => @page }
+  = cadmus_renderer.render(@page.cms_layout.liquid_template, :html, assigns: assigns)
+- else
+  - content_for :content do
+    = page_content
+
+  = render template: 'layouts/application'

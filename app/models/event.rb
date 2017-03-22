@@ -2,6 +2,8 @@ class Event < ApplicationRecord
   belongs_to :root_page, class_name: "Page"
   has_many :pages, as: :parent
   has_many :cms_files, as: :parent
+  has_many :cms_layouts, as: :parent
+  belongs_to :default_cms_layout, class_name: "CmsLayout"
   has_many :navigation_items
 
   validates :name, presence: true

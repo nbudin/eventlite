@@ -10,79 +10,95 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170318212558) do
+ActiveRecord::Schema.define(version: 20170322034629) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "cms_files", force: :cascade do |t|
-    t.string   "parent_type"
-    t.integer  "parent_id"
-    t.integer  "uploader_id"
-    t.string   "file"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.index ["parent_type", "parent_id"], name: "index_cms_files_on_parent_type_and_parent_id", using: :btree
-    t.index ["uploader_id"], name: "index_cms_files_on_uploader_id", using: :btree
-  end
-
-  create_table "events", force: :cascade do |t|
-    t.text     "name"
-    t.datetime "start_time"
-    t.integer  "length_seconds"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-    t.string   "slug",           null: false
-    t.integer  "root_page_id"
-    t.index ["root_page_id"], name: "index_events_on_root_page_id", using: :btree
-    t.index ["slug"], name: "index_events_on_slug", unique: true, using: :btree
-  end
-
-  create_table "navigation_items", force: :cascade do |t|
-    t.text     "title"
-    t.integer  "event_id"
-    t.integer  "parent_id"
-    t.integer  "page_id"
-    t.integer  "position"
+  create_table "cms_files", id: :serial, force: :cascade do |t|
+    t.string "parent_type"
+    t.integer "parent_id"
+    t.integer "uploader_id"
+    t.string "file"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["event_id"], name: "index_navigation_items_on_event_id", using: :btree
-    t.index ["page_id"], name: "index_navigation_items_on_page_id", using: :btree
-    t.index ["parent_id"], name: "index_navigation_items_on_parent_id", using: :btree
+    t.index ["parent_type", "parent_id"], name: "index_cms_files_on_parent_type_and_parent_id"
+    t.index ["uploader_id"], name: "index_cms_files_on_uploader_id"
   end
 
-  create_table "pages", force: :cascade do |t|
-    t.text     "name"
-    t.string   "slug"
-    t.text     "content"
-    t.integer  "parent_id"
-    t.string   "parent_type"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.index ["parent_type", "parent_id", "slug"], name: "index_pages_on_parent_type_and_parent_id_and_slug", unique: true, using: :btree
+  create_table "cms_layouts", force: :cascade do |t|
+    t.string "parent_type"
+    t.bigint "parent_id"
+    t.text "name"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["parent_type", "parent_id"], name: "index_cms_layouts_on_parent_type_and_parent_id"
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
+  create_table "events", id: :serial, force: :cascade do |t|
+    t.text "name"
+    t.datetime "start_time"
+    t.integer "length_seconds"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "slug", null: false
+    t.integer "root_page_id"
+    t.bigint "default_cms_layout_id"
+    t.index ["default_cms_layout_id"], name: "index_events_on_default_cms_layout_id"
+    t.index ["root_page_id"], name: "index_events_on_root_page_id"
+    t.index ["slug"], name: "index_events_on_slug", unique: true
+  end
+
+  create_table "navigation_items", id: :serial, force: :cascade do |t|
+    t.text "title"
+    t.integer "event_id"
+    t.integer "parent_id"
+    t.integer "page_id"
+    t.integer "position"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_navigation_items_on_event_id"
+    t.index ["page_id"], name: "index_navigation_items_on_page_id"
+    t.index ["parent_id"], name: "index_navigation_items_on_parent_id"
+  end
+
+  create_table "pages", id: :serial, force: :cascade do |t|
+    t.text "name"
+    t.string "slug"
+    t.text "content"
+    t.integer "parent_id"
+    t.string "parent_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "cms_layout_id"
+    t.index ["cms_layout_id"], name: "index_pages_on_cms_layout_id"
+    t.index ["parent_type", "parent_id", "slug"], name: "index_pages_on_parent_type_and_parent_id_and_slug", unique: true
+  end
+
+  create_table "users", id: :serial, force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer "sign_in_count", default: 0, null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.inet     "current_sign_in_ip"
-    t.inet     "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.boolean  "admin"
-    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+    t.inet "current_sign_in_ip"
+    t.inet "last_sign_in_ip"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "admin"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "cms_files", "users", column: "uploader_id"
+  add_foreign_key "events", "cms_layouts", column: "default_cms_layout_id"
   add_foreign_key "events", "pages", column: "root_page_id"
   add_foreign_key "navigation_items", "events"
   add_foreign_key "navigation_items", "navigation_items", column: "parent_id"
   add_foreign_key "navigation_items", "pages"
+  add_foreign_key "pages", "cms_layouts"
 end

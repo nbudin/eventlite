@@ -1,0 +1,4 @@
+= bootstrap_form_for [@event, cms_layout] do |f|
+  = f.text_field :name
+  = find_and_preserve(f.text_area(:content, :style => "font-family: monospace; min-height: 8em;"))
+  = f.submit class: 'btn btn-primary'

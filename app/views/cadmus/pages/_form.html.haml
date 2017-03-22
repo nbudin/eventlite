@@ -10,6 +10,9 @@
 
 = f.text_field :name
 = f.text_field :slug, style: "font-family: monospace;"
+- default_layout_label = @event.default_cms_layout ? "Default (currently set as #{@event.default_cms_layout.name})" : "Default layout"
+= f.collection_select :cms_layout_id, @event.cms_layouts.order(:name), :id, :name, include_blank: default_layout_label, label: 'Layout'
+
 .row
   .col-lg-6
     = find_and_preserve(f.text_area(:content, :style => "font-family: monospace; min-height: 8em;", :class => "cadmus-previewable-html", :"data-preview-in" => "html-preview"))

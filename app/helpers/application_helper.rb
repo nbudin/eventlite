@@ -45,4 +45,11 @@ module ApplicationHelper
   def navigation_item_is_active?(item)
     params[:controller] == 'pages' && params[:action] == 'show' && @page == item.page
   end
+
+  def admin_nav_link_to(title, path)
+    classes = ['nav-link']
+    classes << 'active' if request.path.start_with?(path)
+
+    link_to title, path, class: classes.join(' ')
+  end
 end

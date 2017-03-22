@@ -11,7 +11,7 @@ class PagesController < ApplicationController
   # was showing some other page.
 
   load_resource :event, find_by: :slug
-  layout 'admin', except: [:root, :show]
+  layout :determine_layout
 
   respond_to :html
 
@@ -100,5 +100,16 @@ class PagesController < ApplicationController
   # See above comment on the before_action for this.
   def authorize_index
     authorize! :create, Page
+  end
+
+  def page_params
+    params.require(:page).permit(:name, :slug, :content, :cms_layout_id)
+  end
+
+  def determine_layout
+    case params[:action]
+    when 'root', 'show' then 'cms_page'
+    else 'admin'
+    end
   end
 end

@@ -15,5 +15,7 @@ module Eventlite
 
     config.autoload_paths << File.expand_path('app/liquid', Rails.root)
     config.autoload_paths << File.expand_path('app/presenters', Rails.root)
+
+    config.assets.paths << Rails.root.join("tmp", "bootstrap-custom")
   end
 end

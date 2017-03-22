@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :events do
     get 'admin' => 'admin#index'
     resources :cms_files, only: [:index, :create, :destroy]
+    resources :cms_layouts
     resources :navigation_items do
       collection do
         patch :sort
