@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170322212004) do
+ActiveRecord::Schema.define(version: 20170323024936) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,6 +77,33 @@ ActiveRecord::Schema.define(version: 20170322212004) do
     t.index ["parent_type", "parent_id", "slug"], name: "index_pages_on_parent_type_and_parent_id_and_slug", unique: true
   end
 
+  create_table "ticket_types", force: :cascade do |t|
+    t.bigint "event_id"
+    t.text "name"
+    t.integer "price_cents", default: 0, null: false
+    t.string "price_currency", default: "USD", null: false
+    t.integer "number_available"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_ticket_types_on_event_id"
+  end
+
+  create_table "tickets", force: :cascade do |t|
+    t.bigint "ticket_type_id"
+    t.bigint "user_id"
+    t.integer "payment_amount_cents", default: 0, null: false
+    t.string "payment_amount_currency", default: "USD", null: false
+    t.text "name"
+    t.text "email"
+    t.text "phone"
+    t.text "stripe_customer_id"
+    t.text "stripe_charge_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ticket_type_id"], name: "index_tickets_on_ticket_type_id"
+    t.index ["user_id"], name: "index_tickets_on_user_id"
+  end
+
   create_table "users", id: :serial, force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -102,4 +129,7 @@ ActiveRecord::Schema.define(version: 20170322212004) do
   add_foreign_key "navigation_items", "navigation_items", column: "parent_id"
   add_foreign_key "navigation_items", "pages"
   add_foreign_key "pages", "cms_layouts"
+  add_foreign_key "ticket_types", "events"
+  add_foreign_key "tickets", "ticket_types"
+  add_foreign_key "tickets", "users"
 end

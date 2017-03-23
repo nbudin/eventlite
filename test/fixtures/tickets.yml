@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ticket_type: one
+  user: one
+  payment_amount: 
+  name: MyText
+  email: MyText
+  phone: MyText
+  stripe_customer_id: MyText
+  stripe_charge_id: MyText
+
+two:
+  ticket_type: two
+  user: two
+  payment_amount: 
+  name: MyText
+  email: MyText
+  phone: MyText
+  stripe_customer_id: MyText
+  stripe_charge_id: MyText

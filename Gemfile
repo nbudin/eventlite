@@ -32,6 +32,8 @@ gem 'cadmus'
 gem 'haml'
 
 gem 'carrierwave'
+gem 'money-rails'
+gem 'stripe'
 
 gem 'rails-assets-tether', source: 'https://rails-assets.org'
 
