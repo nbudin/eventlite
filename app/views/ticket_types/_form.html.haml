@@ -1,0 +1,5 @@
+= bootstrap_form_for [@event, ticket_type] do |f|
+  = f.text_field :name
+  = f.text_field :price, prepend: "$"
+  = f.number_field :number_available, min: [ticket_type.tickets.count, 1].min
+  = f.submit class: 'btn btn-primary'

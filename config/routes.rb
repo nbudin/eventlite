@@ -10,6 +10,7 @@ Rails.application.routes.draw do
         patch :sort
       end
     end
+    resources :ticket_types
 
     nested do
       cadmus_pages

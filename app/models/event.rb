@@ -5,6 +5,8 @@ class Event < ApplicationRecord
   has_many :cms_layouts, as: :parent
   belongs_to :default_cms_layout, class_name: "CmsLayout"
   has_many :navigation_items
+  has_many :ticket_types
+  has_many :tickets, through: :ticket_types
 
   validates :name, presence: true
 
