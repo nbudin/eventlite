@@ -3,4 +3,8 @@ class TicketType < ApplicationRecord
   has_many :tickets
 
   monetize :price_cents
+
+  def available?
+    tickets.count < number_available
+  end
 end

@@ -18,6 +18,17 @@ class TicketTypesController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    if @ticket_type.update(ticket_type_params)
+      redirect_to event_ticket_types_path(@event)
+    else
+      render action: 'edit'
+    end
+  end
+
   private
 
   def ticket_type_params

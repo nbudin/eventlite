@@ -12,3 +12,7 @@ development:
 test:
   <<: *default
   database: eventlite_test
+
+production:
+  <<: *default
+  database: eventlite_production

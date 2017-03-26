@@ -46,6 +46,10 @@ class Event < ApplicationRecord
     slug
   end
 
+  def to_liquid
+    Drops::EventDrop.new(self)
+  end
+
   private
 
   def generate_slug

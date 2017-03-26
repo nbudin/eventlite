@@ -1,5 +1,4 @@
 import React, { PropTypes } from 'react';
-import _ from 'lodash';
 import Payment from 'payment';
 
 const CARD_TYPE_ICONS = {
@@ -25,8 +24,8 @@ class CreditCardNumberInput extends React.Component {
       if (cardType) {
         iconClass = CARD_TYPE_ICONS[cardType] || CARD_TYPE_ICONS['unknown'];
 
-        var cardTypeObject = _.find(Payment.getCardArray(), (card) => { return card.type === cardType });
-        if (_.includes(cardTypeObject.length, cardNumber.replace(/\s/g, '').length)) {
+        var cardTypeObject = Payment.getCardArray().find((card) => { return card.type === cardType });
+        if (cardTypeObject.length.includes(cardNumber.replace(/\s/g, '').length)) {
           if (Payment.fns.validateCardNumber(cardNumber)) {
             backgroundClass = 'bg-success';
             colorClass = 'text-success';
