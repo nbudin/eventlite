@@ -13,6 +13,6 @@ class ApplicationController < ActionController::Base
   end
 
   def liquid_registers
-    { 'parent' => @event }
+    { 'parent' => @event, 'controller' => self }
   end
 end

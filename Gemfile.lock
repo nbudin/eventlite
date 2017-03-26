@@ -89,6 +89,7 @@ GEM
       warden (~> 1.2.3)
     domain_name (0.5.20161021)
       unf (>= 0.0.5, < 1.0.0)
+    dotenv (2.1.1)
     erubi (1.6.0)
     erubis (2.7.0)
     execjs (2.7.0)
@@ -242,6 +243,7 @@ DEPENDENCIES
   carrierwave
   coffee-script
   devise
+  dotenv
   erubis
   font-awesome-rails
   haml

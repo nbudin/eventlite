@@ -11,6 +11,8 @@ Rails.application.routes.draw do
       end
     end
     resources :ticket_types
+    resources :tickets
+    resources :ticket_charges, only: [:create]
 
     nested do
       cadmus_pages

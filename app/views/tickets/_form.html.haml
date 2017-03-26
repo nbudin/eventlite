@@ -1,0 +1,10 @@
+.container
+  .card
+    .card-block
+      = bootstrap_form_for event_ticket_charges_path(@event) do
+        = react_component "TicketPurchaseForm", ticketTypes: @event.ticket_types.map { |ticket_type| { name: ticket_type.name, price: ticket_type.price.fractional, formattedPrice: humanized_money_with_symbol(ticket_type.price, no_cents_if_whole: false) } }
+        / %script{src: "https://checkout.stripe.com/checkout.js"}
+
+        / :javascript
+        /
+        / , "data-key" => Rails.configuration.stripe[:publishable_key], "data-description" => "A month's subscription", "data-amount" => "500", "data-locale" => "auto"}

@@ -1,16 +1,20 @@
 %h1 Tickets for #{@event.name}
 
 - @ticket_types.each do |ticket_type|
-  - sold_count = ticket_type.tickets.count
+  - sold_count = ticket_type.tickets.not_canceled.count
+  - canceled_count = ticket_type.tickets.canceled.count
 
   .card.mb-4
     .card-header= ticket_type.name
     .card-block
       .progress
-        .progress-bar{role: 'progressbar', "aria-valuenow" => sold_count, "aria-valuemin" => 0, "aria-valuemax" => ticket_type.number_available, style: "width: #{((sold_count.to_f / ticket_type.number_available.to_f) * 100).round}"}
+        .progress-bar{role: 'progressbar', "aria-valuenow" => sold_count, "aria-valuemin" => 0, "aria-valuemax" => ticket_type.number_available, style: "width: #{((sold_count.to_f / ticket_type.number_available.to_f) * 100).round}%"}
       .text-right
         %small
           #{sold_count} / #{pluralize ticket_type.number_available, "ticket"}
           sold
+          - if canceled_count > 0
+            %span.text-danger
+              (#{canceled_count} canceled)
 
 = link_to "New ticket type", new_event_ticket_type_path(@event), class: 'btn btn-primary'

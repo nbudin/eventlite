@@ -9,9 +9,9 @@
 
 require('./navigation_admin');
 
-// import WebpackerReact from 'webpacker-react';
-// import NavigationItemForm from './NavigationAdmin/NavigationItemForm';
-//
-// WebpackerReact.setup({
-//   NavigationItemForm
-// });
+import WebpackerReact from 'webpacker-react';
+import TicketPurchaseForm from './TicketPurchaseForm';
+
+WebpackerReact.setup({
+  TicketPurchaseForm
+});
