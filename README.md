@@ -1,24 +1,12 @@
-# README
+# Eventlite
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Eventlite is a system for making web sites for events.  It lets you create an attractive, professional presence for your events on the web, and sell event tickets through that site.
 
-Things you may want to cover:
+## Features
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Build event web sites with whatever content you choose and fully customizable visual design
+* Credit card ticket purchasing via [Stripe](https://stripe.com)
+* Events can have multiple ticket types with separate pricing and availability limits
+* Page templates using [Liquid markup](http://www.liquidmarkup.org)
+* Host multiple events on a single domain name
+* Multiple admin accounts with passwords
