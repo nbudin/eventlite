@@ -3,6 +3,7 @@ class Ability
 
   def initialize(user)
     can :read, Event
+    can :read, Page
 
     return unless user
 
