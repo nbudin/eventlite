@@ -37,7 +37,7 @@ class PaymentEntry extends React.Component {
         />
 
         <div className="row">
-          <div className="col">
+          <div className="col-md-4">
             <div className="form-group">
               <label className="control-label">Expiration date</label>
               <div className="row">
@@ -51,14 +51,14 @@ class PaymentEntry extends React.Component {
             </div>
           </div>
 
-          <div className="col">
+          <div className="col-sm-6 col-md-4">
             <div className="form-group">
               <label htmlFor={cvcId} className="control-label">CVC</label>
               <input type="tel" disabled={this.props.disabled} id={cvcId} value={this.props.cvc} onChange={this.props.onCvcChanged} className="form-control" placeholder="•••" />
             </div>
           </div>
 
-          <div className="col">
+          <div className="col-sm-6 col-md-4">
             <div className="form-group">
               <label htmlFor={zipId} className="control-label">ZIP/Postal Code</label>
               <input type="tel" disabled={this.props.disabled} id={zipId} value={this.props.zip} onChange={this.props.onZipChanged} className="form-control" placeholder="" />
