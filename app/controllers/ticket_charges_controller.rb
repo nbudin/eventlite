@@ -27,6 +27,7 @@ class TicketChargesController < ApplicationController
       return render plain: e.message, status: 500
     end
 
+    TicketChargesMailer.confirmation(ticket).deliver_now
     respond_with @event, ticket
   end
 
