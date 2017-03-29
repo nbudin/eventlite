@@ -38,8 +38,8 @@ gem 'with_advisory_lock'
 
 gem 'rails-assets-tether', source: 'https://rails-assets.org'
 
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
+gem 'rollbar'
+gem 'oj', '~> 2.12.14'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
