@@ -7,4 +7,8 @@ class Ticket < ApplicationRecord
 
   scope :canceled, -> { where.not(canceled_at: nil) }
   scope :not_canceled, -> { where(canceled_at: nil) }
+
+  def canceled?
+    !!canceled_at
+  end
 end

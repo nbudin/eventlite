@@ -1,0 +1,25 @@
+%h1.mb-4 Tickets for #{@event.name}
+
+%table.table.table-striped.mb-4
+  %thead
+    %tr
+      %th Name
+      %th Phone
+      %th Email
+      %th Ticket type
+      %th Amount
+  %tbody
+    - @tickets.each do |ticket|
+      %tr{class: ticket.canceled? ? 'table-danger' : nil}
+        %td= ticket.name
+        %td= ticket.phone
+        %td= mail_to ticket.email
+        %td
+          = ticket.ticket_type.name
+          - if ticket.canceled?
+            (CANCELED)
+        %td= humanized_money_with_symbol(ticket.payment_amount, no_cents_if_whole: false)
+
+%h2 Email addresses for all attendees
+
+= @tickets.map(&:email).join(', ')
