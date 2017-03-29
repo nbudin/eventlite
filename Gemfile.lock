@@ -256,6 +256,9 @@ GEM
     websocket-driver (0.6.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
+    with_advisory_lock (3.0.0)
+      activerecord (>= 3.2)
+      thread_safe
 
 PLATFORMS
   ruby
@@ -297,6 +300,7 @@ DEPENDENCIES
   web-console (>= 3.3.0)
   webpacker!
   webpacker-react (~> 0.2.0)
+  with_advisory_lock
 
 BUNDLED WITH
    1.10.5
