@@ -47,6 +47,15 @@ class TicketPurchaseForm extends React.Component {
     e.stopPropagation();
     e.preventDefault();
 
+    const missingFields = ['ccNumber', 'cvc', 'expMonth', 'expYear', 'zip', 'name', 'email', 'phone'].filter((field) => {
+      return !this.state[field];
+    });
+
+    if (missingFields.length > 0) {
+      this.setState({ paymentError: "Please fill out all the fields in this form." });
+      return;
+    }
+
     this.setState({submitting: true});
 
     Stripe.card.createToken({
@@ -103,10 +112,12 @@ class TicketPurchaseForm extends React.Component {
       }).then((response) => {
         window.location.href = this.props.purchaseCompleteUrl;
       }).catch((error) => {
-        this.setState({
-          paymentError: error.message,
-          submitting: false
-        })
+        error.response.text().then((text) => {
+          this.setState({
+            paymentError: text,
+            submitting: false
+          });
+        });
       });
     }
   }
@@ -130,48 +141,58 @@ class TicketPurchaseForm extends React.Component {
         description += " - SOLD OUT";
       }
 
-      return <option key={i} value={ticketType.id} disabled={!ticketType.available}>{description}</option>;
+      let formCheckClass = "form-check";
+      if (!ticketType.available) {
+        formCheckClass += " disabled";
+      }
+
+      return (
+        <div className={formCheckClass} key={i}>
+          <label className="form-check-label">
+            <input
+              type="radio"
+              className="form-check-input"
+              value={ticketType.id}
+              disabled={!ticketType.available}
+              checked={this.state.ticketTypeId === ticketType.id.toString()}
+              onChange={this.fieldChanged.bind(this, 'ticketTypeId')}
+            />
+            &nbsp;
+            {description}
+          </label>
+        </div>
+      );
     });
 
     const id = this.nextUniqueId();
 
-    return (
-      <div className="form-group">
-        <label htmlFor={id}>Ticket type</label>
-        <select className="form-control" id={id} value={this.state.ticketTypeId} onChange={this.fieldChanged.bind(this, 'ticketTypeId')}>
-          <option></option>
-          {options}
-        </select>
-      </div>
-    );
+    return options;
   }
 
   renderPaymentSection = () => {
-    if (!this.state.ticketTypeId) {
-      return null;
-    }
-
+    const disabled = !this.state.ticketTypeId;
     const nameId = this.nextUniqueId();
     const emailId = this.nextUniqueId();
     const phoneId = this.nextUniqueId();
 
     return (
       <div>
+        <hr/>
         {this.renderPaymentError()}
 
         <div className="form-group">
           <label htmlFor={nameId}>Name</label>
-          <input className="form-control" id={nameId} type="text" value={this.state.name} onChange={this.fieldChanged.bind(this, 'name')} />
+          <input disabled={disabled} className="form-control" id={nameId} type="text" value={this.state.name} onChange={this.fieldChanged.bind(this, 'name')} />
         </div>
 
         <div className="form-group">
           <label htmlFor={emailId}>Email</label>
-          <input className="form-control" id={emailId} type="email" value={this.state.email} onChange={this.fieldChanged.bind(this, 'email')} />
+          <input disabled={disabled} className="form-control" id={emailId} type="email" value={this.state.email} onChange={this.fieldChanged.bind(this, 'email')} />
         </div>
 
         <div className="form-group">
           <label htmlFor={phoneId}>Phone number</label>
-          <input className="form-control" id={phoneId} type="email" value={this.state.phone} onChange={this.fieldChanged.bind(this, 'phone')} />
+          <input disabled={disabled} className="form-control" id={phoneId} type="email" value={this.state.phone} onChange={this.fieldChanged.bind(this, 'phone')} />
         </div>
 
         <PaymentEntry
@@ -185,9 +206,10 @@ class TicketPurchaseForm extends React.Component {
           onExpYearChanged={this.fieldChanged.bind(this, 'expYear')}
           onCvcChanged={this.fieldChanged.bind(this, 'cvc')}
           onZipChanged={this.fieldChanged.bind(this, 'zip')}
+          disabled={disabled}
         />
 
-        <button className="btn btn-primary" disabled={this.state.submitting} onClick={this.submitPayment}>
+        <button className="btn btn-primary" disabled={this.state.submitting} onClick={this.submitPayment} disabled={disabled}>
           Submit payment
           {this.renderSubmittingSpinner()}
         </button>
