@@ -35,6 +35,10 @@ set :default_env, { SECRET_KEY_BASE: "e82ab9a15094359705b12d162ded247f7932c0ef4f
 # Default value for keep_releases is 5
 # set :keep_releases, 5
 
+set :rollbar_token, ENV['ROLLBAR_TOKEN']
+set :rollbar_env, Proc.new { fetch :stage }
+set :rollbar_role, Proc.new { :app }
+
 namespace :deploy do
 
   desc 'Restart application'
