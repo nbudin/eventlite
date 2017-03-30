@@ -39,7 +39,7 @@ gem 'with_advisory_lock'
 gem 'rails-assets-tether', source: 'https://rails-assets.org'
 
 gem 'rollbar'
-gem 'oj', '~> 2.12.14'
+gem 'oj'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
