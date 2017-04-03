@@ -2,5 +2,7 @@
   = f.text_field :name
   = f.text_field :price, prepend: "$"
   = f.number_field :number_available, min: [ticket_type.tickets.count, 1].min
+  = f.email_field :email_from
+  = f.text_field :email_subject
   = find_and_preserve(f.text_area(:email_template, :style => "font-family: monospace; min-height: 40vh;"))
   = f.submit class: 'btn btn-primary'
