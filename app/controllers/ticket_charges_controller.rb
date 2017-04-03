@@ -24,6 +24,7 @@ class TicketChargesController < ApplicationController
         ticket.save!
       end
     rescue Exception => e
+      Rollbar.error(e)
       return render plain: e.message, status: 500
     end
 
