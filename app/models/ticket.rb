@@ -11,4 +11,8 @@ class Ticket < ApplicationRecord
   def canceled?
     !!canceled_at
   end
+
+  def to_liquid
+    Drops::TicketDrop.new(self)
+  end
 end

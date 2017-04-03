@@ -7,4 +7,8 @@ class TicketType < ApplicationRecord
   def available?
     tickets.count < number_available
   end
+
+  def email_liquid_template
+    Liquid::Template.parse(email_template)
+  end
 end

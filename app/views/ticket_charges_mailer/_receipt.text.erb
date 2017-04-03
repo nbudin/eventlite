@@ -1,0 +1,6 @@
+Name: <%= ticket.name %>
+Email: <%= ticket.email %>
+Phone: <%= ticket.phone %>
+Event: <%= ticket.event.name %>
+Ticket type: <%= ticket.ticket_type.name %>
+Purchase amount: <%= humanized_money_with_symbol(ticket.payment_amount, no_cents_if_whole: false) %>

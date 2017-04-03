@@ -1,0 +1,5 @@
+%h1 Preview ticket purchase email
+
+= bootstrap_form_tag url: preview_email_event_ticket_type_path(@event, @ticket_type), method: 'POST' do |f|
+  = f.email_field :email
+  = f.submit "Send test email", class: 'btn btn-primary'

@@ -29,9 +29,19 @@ class TicketTypesController < ApplicationController
     end
   end
 
+  def preview_email_form
+  end
+
+  def preview_email
+    ticket = @ticket_type.tickets.new(name: 'NAME', email: params[:email], phone: '867-5309', payment_amount: @ticket_type.price)
+    TicketChargesMailer.confirmation(ticket).deliver_now
+
+    redirect_to event_ticket_types_url(@event), notice: "Test email sent to #{params[:email]}."
+  end
+
   private
 
   def ticket_type_params
-    params.require(:ticket_type).permit(:name, :price, :number_available)
+    params.require(:ticket_type).permit(:name, :price, :number_available, :email_template)
   end
 end

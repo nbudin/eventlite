@@ -1,0 +1,19 @@
+%table
+  %tr
+    %td Name
+    %td= ticket.name
+  %tr
+    %td Email
+    %td= ticket.email
+  %tr
+    %td Phone
+    %td= ticket.phone
+  %tr
+    %td Event
+    %td= ticket.event.name
+  %tr
+    %td Ticket type
+    %td= ticket.ticket_type.name
+  %tr
+    %td Purchase amount
+    %td= humanized_money_with_symbol(ticket.payment_amount, no_cents_if_whole: false)
