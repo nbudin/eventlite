@@ -42,6 +42,6 @@ class TicketTypesController < ApplicationController
   private
 
   def ticket_type_params
-    params.require(:ticket_type).permit(:name, :price, :number_available, :email_template)
+    params.require(:ticket_type).permit(:name, :price, :number_available, :email_subject, :email_from, :email_template)
   end
 end
