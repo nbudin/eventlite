@@ -12,6 +12,8 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  protected
+
   def liquid_assigns
     { 'event' => @event }
   end
