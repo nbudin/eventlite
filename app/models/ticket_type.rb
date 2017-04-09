@@ -3,16 +3,10 @@ class TicketType < ApplicationRecord
   has_many :tickets
 
   monetize :price_cents
+  liquid_template_field :email_subject_liquid_template, :email_subject
+  liquid_template_field :email_liquid_template, :email_template
 
   def available?
     tickets.count < number_available
-  end
-
-  def email_subject_liquid_template
-    Liquid::Template.parse(email_subject)
-  end
-
-  def email_liquid_template
-    Liquid::Template.parse(email_template)
   end
 end

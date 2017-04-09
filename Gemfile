@@ -28,7 +28,7 @@ gem 'acts_as_list'
 gem 'bootstrap_form', github: 'bootstrap-ruby/rails-bootstrap-forms', branch: 'bootstrap-v4'
 gem 'bootstrap', '~> 4.0.0.alpha6'
 gem "font-awesome-rails"
-gem 'cadmus'
+gem 'cadmus', '~> 0.6.0'
 gem 'haml'
 
 gem 'carrierwave'
