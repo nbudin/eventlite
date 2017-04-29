@@ -71,6 +71,11 @@ GEM
     cadmus (0.6.0)
       liquid
       rails (>= 4.0.0)
+    cadmus_files (0.1.0)
+      cadmus
+      carrierwave
+      liquid
+      rails (>= 4.0.0)
     cancancan (1.16.0)
     capistrano (3.8.0)
       airbrussh (>= 1.0.0)
@@ -272,6 +277,7 @@ DEPENDENCIES
   bootstrap_form!
   byebug
   cadmus (~> 0.6.0)
+  cadmus_files
   cancancan
   capistrano (~> 3.6)
   capistrano-maintenance

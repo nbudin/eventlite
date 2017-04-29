@@ -29,6 +29,7 @@ gem 'bootstrap_form', github: 'bootstrap-ruby/rails-bootstrap-forms', branch: 'b
 gem 'bootstrap', '~> 4.0.0.alpha6'
 gem "font-awesome-rails"
 gem 'cadmus', '~> 0.6.0'
+gem 'cadmus_files'
 gem 'haml'
 
 gem 'carrierwave'
