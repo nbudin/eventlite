@@ -1,10 +1,22 @@
 module ApplicationHelper
+  def liquid_assigns_for_layout(cms_layout)
+    head_content = render(partial: 'layouts/head')
+    {
+      'content_for_head' => head_content,
+      'content_for_navbar' => navigation_bar(cms_layout.navbar_classes)
+    }
+  end
+
   def navigation_bar(navbar_classes = nil)
     navbar_classes ||= 'navbar-light bg-faded'
 
     if @event
-      navigation_items = @event.navigation_items.root.includes(:page, children: :page).order(:position)
-      render partial: 'layouts/cms_navigation_bar', locals: { navigation_items: navigation_items, navbar_classes: navbar_classes }
+      renderer = CadmusNavbar::Renderers::Bootstrap4.from_parent(
+        parent: @event,
+        request: request,
+        url_for_page: ->(page) { canonical_page_path(page) }
+      )
+      render partial: 'layouts/cms_navigation_bar', locals: { renderer: renderer, navbar_classes: navbar_classes }
     else
       render partial: 'layouts/non_cms_navigation_bar', locals: { navbar_classes: navbar_classes }
     end

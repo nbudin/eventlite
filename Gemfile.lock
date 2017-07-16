@@ -5,14 +5,29 @@ GIT
   specs:
     bootstrap_form (2.6.0)
 
-GIT
-  remote: https://github.com/rails/webpacker.git
-  revision: 96223d1721e99d76508744e660bff7ac2dffdf96
+PATH
+  remote: /Users/nbudin/src/cadmus_files
   specs:
-    webpacker (1.0)
-      activesupport (>= 4.2)
-      multi_json (~> 1.2)
-      railties (>= 4.2)
+    cadmus_files (0.2.0)
+      cadmus
+      carrierwave
+      liquid
+      rails (>= 4.0.0)
+
+PATH
+  remote: /Users/nbudin/src/cadmus_navbar
+  specs:
+    cadmus_navbar (0.1.0)
+      acts_as_list
+      cadmus
+      rails (>= 5.0.0)
+
+PATH
+  remote: /Users/nbudin/src/cadmus
+  specs:
+    cadmus (0.6.0)
+      liquid
+      rails (>= 5.0.0)
 
 GEM
   remote: https://rubygems.org/
@@ -68,14 +83,6 @@ GEM
       sass (>= 3.4.19)
     builder (3.2.3)
     byebug (9.0.6)
-    cadmus (0.6.0)
-      liquid
-      rails (>= 4.0.0)
-    cadmus_files (0.1.0)
-      cadmus
-      carrierwave
-      liquid
-      rails (>= 4.0.0)
     cancancan (1.16.0)
     capistrano (3.8.0)
       airbrussh (>= 1.0.0)
@@ -128,7 +135,7 @@ GEM
       tilt
     http-cookie (1.0.3)
       domain_name (~> 0.5)
-    i18n (0.8.1)
+    i18n (0.8.4)
     jquery-rails (4.2.2)
       rails-dom-testing (>= 1, < 3)
       railties (>= 4.2.0)
@@ -147,8 +154,8 @@ GEM
     mime-types (3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
-    mini_portile2 (2.1.0)
-    minitest (5.10.1)
+    mini_portile2 (2.2.0)
+    minitest (5.10.2)
     monetize (1.6.0)
       money (~> 6.8)
     money (6.8.2)
@@ -165,8 +172,8 @@ GEM
     net-ssh (4.1.0)
     netrc (0.11.0)
     nio4r (2.0.0)
-    nokogiri (1.7.1)
-      mini_portile2 (~> 2.1.0)
+    nokogiri (1.8.0)
+      mini_portile2 (~> 2.2.0)
     oj (2.18.5)
     orm_adapter (0.5.0)
     pg (0.20.0)
@@ -177,7 +184,8 @@ GEM
     pry-rails (0.3.5)
       pry (>= 0.9.10)
     puma (3.8.2)
-    rack (2.0.1)
+    rack (2.0.3)
+    rack-cors (0.4.1)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (5.1.0.rc1)
@@ -193,9 +201,9 @@ GEM
       railties (= 5.1.0.rc1)
       sprockets-rails (>= 2.0.0)
     rails-assets-tether (1.4.0)
-    rails-dom-testing (2.0.2)
-      activesupport (>= 4.2.0, < 6.0)
-      nokogiri (~> 1.6)
+    rails-dom-testing (2.0.3)
+      activesupport (>= 4.2.0)
+      nokogiri (>= 1.6)
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
     railties (5.1.0.rc1)
@@ -245,7 +253,7 @@ GEM
     thor (0.19.4)
     thread_safe (0.3.6)
     tilt (2.0.7)
-    tzinfo (1.2.2)
+    tzinfo (1.2.3)
       thread_safe (~> 0.1)
     uglifier (3.1.9)
       execjs (>= 0.3.0, < 3)
@@ -259,6 +267,10 @@ GEM
       activemodel (>= 5.0)
       debug_inspector
       railties (>= 5.0)
+    webpacker (2.0)
+      activesupport (>= 4.2)
+      multi_json (~> 1.2)
+      railties (>= 4.2)
     webpacker-react (0.2.0)
       webpacker
     websocket-driver (0.6.5)
@@ -276,8 +288,9 @@ DEPENDENCIES
   bootstrap (~> 4.0.0.alpha6)
   bootstrap_form!
   byebug
-  cadmus (~> 0.6.0)
-  cadmus_files
+  cadmus!
+  cadmus_files!
+  cadmus_navbar!
   cancancan
   capistrano (~> 3.6)
   capistrano-maintenance
@@ -298,6 +311,7 @@ DEPENDENCIES
   pg
   pry-rails
   puma (~> 3.0)
+  rack-cors
   rails (~> 5.1.0.rc1)
   rails-assets-tether!
   responders
@@ -309,9 +323,9 @@ DEPENDENCIES
   tzinfo-data
   uglifier (>= 1.3.0)
   web-console (>= 3.3.0)
-  webpacker!
+  webpacker
   webpacker-react (~> 0.2.0)
   with_advisory_lock
 
 BUNDLED WITH
-   1.14.4
+   1.15.1

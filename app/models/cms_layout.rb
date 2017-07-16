@@ -1,7 +1,5 @@
 class CmsLayout < ApplicationRecord
-  include Cadmus::LiquidTemplateField
+  include Cadmus::Layout
 
-  belongs_to :parent, polymorphic: true
-  validates_uniqueness_of :name, scope: [:parent_id, :parent_type]
-  liquid_template_field :liquid_template, :content
+  cadmus_layout
 end

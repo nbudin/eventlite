@@ -1,2 +1,2 @@
 web: bin/rails server -p $PORT
-webpack: bin/webpack-watcher
+webpack: bin/webpack-dev-server

@@ -1,4 +1,6 @@
 class TicketType < ApplicationRecord
+  include Cadmus::Concerns::LiquidTemplateField
+
   belongs_to :event
   has_many :tickets
 

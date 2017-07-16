@@ -7,20 +7,14 @@
 // To reference this file, add <%= javascript_pack_tag 'application' %> to the appropriate
 // layout file, like app/views/layouts/application.html.erb
 
-import Promise from 'promise-polyfill';
-
-// To add to window
-if (!window.Promise) {
-  window.Promise = Promise;
-}
-
+import 'babel-polyfill';
 import 'whatwg-fetch';
 
-require('./navigation_admin');
-
 import WebpackerReact from 'webpacker-react';
+import CadmusNavbarAdminApp from 'cadmus-navbar-admin';
 import TicketPurchaseForm from './TicketPurchaseForm';
 
 WebpackerReact.setup({
-  TicketPurchaseForm
+  TicketPurchaseForm,
+  CadmusNavbarAdminApp,
 });

@@ -4,6 +4,5 @@
 
   #main-navbar-collapse-1.collapse.navbar-collapse
     %ul.nav.navbar-nav.mr-auto
-      - navigation_items.each do |item|
-        = render_navigation_item item
+      = renderer.render_navigation_items
     = render partial: 'layouts/navigation_right'

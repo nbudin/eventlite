@@ -1,4 +1,6 @@
 class Page < ApplicationRecord
+  include Cadmus::Page
+
   cadmus_page
   belongs_to :cms_layout
 

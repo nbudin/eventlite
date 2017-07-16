@@ -4,7 +4,7 @@ class Event < ApplicationRecord
   has_many :cms_files, as: :parent
   has_many :cms_layouts, as: :parent
   belongs_to :default_cms_layout, class_name: "CmsLayout"
-  has_many :navigation_items
+  has_many :navigation_items, as: :parent
   has_many :ticket_types
   has_many :tickets, through: :ticket_types
 

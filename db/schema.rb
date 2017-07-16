@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170403141714) do
+ActiveRecord::Schema.define(version: 20170618175720) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,13 +53,14 @@ ActiveRecord::Schema.define(version: 20170403141714) do
 
   create_table "navigation_items", id: :serial, force: :cascade do |t|
     t.text "title"
-    t.integer "event_id"
     t.integer "parent_id"
+    t.integer "navigation_section_id"
     t.integer "page_id"
     t.integer "position"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["event_id"], name: "index_navigation_items_on_event_id"
+    t.string "parent_type"
+    t.index ["navigation_section_id"], name: "index_navigation_items_on_navigation_section_id"
     t.index ["page_id"], name: "index_navigation_items_on_page_id"
     t.index ["parent_id"], name: "index_navigation_items_on_parent_id"
   end
@@ -130,8 +131,8 @@ ActiveRecord::Schema.define(version: 20170403141714) do
   add_foreign_key "cms_files", "users", column: "uploader_id"
   add_foreign_key "events", "cms_layouts", column: "default_cms_layout_id"
   add_foreign_key "events", "pages", column: "root_page_id"
-  add_foreign_key "navigation_items", "events"
-  add_foreign_key "navigation_items", "navigation_items", column: "parent_id"
+  add_foreign_key "navigation_items", "events", column: "parent_id"
+  add_foreign_key "navigation_items", "navigation_items", column: "navigation_section_id"
   add_foreign_key "navigation_items", "pages"
   add_foreign_key "pages", "cms_layouts"
   add_foreign_key "ticket_types", "events"

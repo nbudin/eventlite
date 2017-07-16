@@ -15,7 +15,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'coffee-script'
-gem 'webpacker', github: 'rails/webpacker'
+gem 'webpacker'
 gem 'webpacker-react', "~> 0.2.0"
 gem 'erubis'
 
@@ -28,8 +28,10 @@ gem 'acts_as_list'
 gem 'bootstrap_form', github: 'bootstrap-ruby/rails-bootstrap-forms', branch: 'bootstrap-v4'
 gem 'bootstrap', '~> 4.0.0.alpha6'
 gem "font-awesome-rails"
-gem 'cadmus', '~> 0.6.0'
-gem 'cadmus_files'
+#gem 'cadmus', '~> 0.6.0'
+gem 'cadmus', path: '/Users/nbudin/src/cadmus'
+gem 'cadmus_files', path: '/Users/nbudin/src/cadmus_files'
+gem 'cadmus_navbar', path: '/Users/nbudin/src/cadmus_navbar'
 gem 'haml'
 
 gem 'carrierwave'
@@ -41,6 +43,8 @@ gem 'rails-assets-tether', source: 'https://rails-assets.org'
 
 gem 'rollbar'
 gem 'oj'
+
+gem 'rack-cors'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
