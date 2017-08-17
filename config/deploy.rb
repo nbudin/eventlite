@@ -1,5 +1,5 @@
 # config valid only for current version of Capistrano
-lock "3.8.0"
+lock "3.9.0"
 
 set :rbenv_ruby, '2.4.0'
 set :rbenv_custom_path, "/opt/rbenv"
@@ -51,4 +51,3 @@ namespace :deploy do
   after :publishing, :restart
 
 end
-

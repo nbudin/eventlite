@@ -5,8 +5,19 @@ GIT
   specs:
     bootstrap_form (2.6.0)
 
-PATH
-  remote: /Users/nbudin/src/cadmus_files
+GIT
+  remote: https://github.com/gively/cadmus.git
+  revision: 449882d17c0f38fbfe486d583affde937212df93
+  branch: partials_and_layouts
+  specs:
+    cadmus (0.6.0)
+      liquid
+      rails (>= 5.0.0)
+
+GIT
+  remote: https://github.com/nbudin/cadmus_files.git
+  revision: 3bf74e76b536543eb4bbddb7f2d3a041a38ff31d
+  branch: cadmus_0_6
   specs:
     cadmus_files (0.2.0)
       cadmus
@@ -14,19 +25,13 @@ PATH
       liquid
       rails (>= 4.0.0)
 
-PATH
-  remote: /Users/nbudin/src/cadmus_navbar
+GIT
+  remote: https://github.com/nbudin/cadmus_navbar.git
+  revision: 93abd8ffa3821a95bec884c549300f0e4b61644d
   specs:
     cadmus_navbar (0.1.0)
       acts_as_list
       cadmus
-      rails (>= 5.0.0)
-
-PATH
-  remote: /Users/nbudin/src/cadmus
-  specs:
-    cadmus (0.6.0)
-      liquid
       rails (>= 5.0.0)
 
 GEM

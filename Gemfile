@@ -29,9 +29,9 @@ gem 'bootstrap_form', github: 'bootstrap-ruby/rails-bootstrap-forms', branch: 'b
 gem 'bootstrap', '~> 4.0.0.beta'
 gem "font-awesome-rails"
 #gem 'cadmus', '~> 0.6.0'
-gem 'cadmus', path: '/Users/nbudin/src/cadmus'
-gem 'cadmus_files', path: '/Users/nbudin/src/cadmus_files'
-gem 'cadmus_navbar', path: '/Users/nbudin/src/cadmus_navbar'
+gem 'cadmus', github: 'gively/cadmus', branch: 'partials_and_layouts'
+gem 'cadmus_files', github: 'nbudin/cadmus_files', branch: 'cadmus_0_6'
+gem 'cadmus_navbar', github: 'nbudin/cadmus_navbar'
 gem 'haml'
 
 gem 'carrierwave'
