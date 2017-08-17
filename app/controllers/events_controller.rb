@@ -12,6 +12,7 @@ class EventsController < ApplicationController
 
   def show
     @page = @event.root_page
+    @page_title = @page.name
     render template: 'cadmus/pages/show'
   end
 

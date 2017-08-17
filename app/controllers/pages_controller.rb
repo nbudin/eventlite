@@ -22,6 +22,8 @@ class PagesController < ApplicationController
   # comes before authorize_actions_for in the chain.
   before_action :find_root_page, :only => [:root]
 
+  before_action :set_page_title, only: [:show, :root]
+
   # Now it's safe to run authorize_actions_for.  We'll call out to the page_for_authorization
   # method to return the page we're using, and use read permissions for the root action.
   authorize_resource :page
@@ -121,5 +123,9 @@ class PagesController < ApplicationController
     when 'root', 'show' then 'cms_page'
     else 'admin'
     end
+  end
+
+  def set_page_title
+    @page_title = @page&.name
   end
 end

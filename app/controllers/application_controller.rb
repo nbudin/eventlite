@@ -15,10 +15,15 @@ class ApplicationController < ActionController::Base
   protected
 
   def liquid_assigns
-    { 'event' => @event }
+    { 'event' => @event, 'page_title' => page_title }
   end
 
   def liquid_registers
     { 'parent' => @event, 'controller' => self }
   end
+
+  def page_title
+    [@page_title, @event&.name || 'Eventlite'].compact.join(' - ')
+  end
+  helper_method :page_title
 end
