@@ -283,7 +283,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts_as_list
-  bootstrap (~> 4.0.0.alpha6)
+  bootstrap (~> 4.0.0.beta)
   bootstrap_form!
   byebug
   cadmus!
