@@ -13,6 +13,5 @@
 //= require jquery
 //= require jquery-ui/widgets/sortable
 //= require rails-ujs
-//= require tether
 //= require bootstrap-sprockets
 //= require_tree .

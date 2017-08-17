@@ -9,6 +9,7 @@
 
 import 'babel-polyfill';
 import 'whatwg-fetch';
+import Popper from 'popper.js';
 
 import WebpackerReact from 'webpacker-react';
 import CadmusNavbarAdminApp from 'cadmus-navbar-admin';
@@ -18,3 +19,5 @@ WebpackerReact.setup({
   TicketPurchaseForm,
   CadmusNavbarAdminApp,
 });
+
+window.Popper = Popper;

@@ -39,8 +39,6 @@ gem 'money-rails'
 gem 'stripe'
 gem 'with_advisory_lock'
 
-gem 'rails-assets-tether', source: 'https://rails-assets.org'
-
 gem 'rollbar'
 gem 'oj'
 

@@ -3,7 +3,7 @@
 
   .card
     .card-header Account settings
-    .card-block
+    .card-body
       = bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
         = devise_error_messages!
 

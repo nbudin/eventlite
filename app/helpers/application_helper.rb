@@ -8,7 +8,7 @@ module ApplicationHelper
   end
 
   def navigation_bar(navbar_classes = nil)
-    navbar_classes ||= 'navbar-light bg-faded'
+    navbar_classes ||= 'navbar-light bg-light'
 
     if @event
       renderer = CadmusNavbar::Renderers::Bootstrap4.from_parent(

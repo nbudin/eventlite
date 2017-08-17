@@ -15,11 +15,11 @@
 
 .card
   .card-header Settings
-  .card-block
+  .card-body
     = render partial: 'form', locals: { navigation_item: @navigation_item }
 
 - if @navigation_item.item_type == 'section'
   .card.mt-4
     .card-header Add a link to this section
-    .card-block
+    .card-body
       = render partial: 'form', locals: { navigation_item: @navigation_item.children.new }
