@@ -5,8 +5,8 @@ class CmsLayoutsController < ApplicationController
   self.parent_model_name = 'event'
   self.find_parent_by = 'slug'
 
-  load_resource :event, find_by: 'slug'
-  load_and_authorize_resource through: :event
+  before_action :find_event_and_cms_layout
+  authorize_resource
 
   layout 'admin'
 
@@ -14,5 +14,19 @@ class CmsLayoutsController < ApplicationController
 
   def cms_layout_params
     params.require(:cms_layout).permit(:name, :content, :navbar_classes)
+  end
+
+  def find_event_and_cms_layout
+    if params[:event_id]
+      @event = Event.find_by!(slug: params[:event_id])
+    end
+
+    if params[:id]
+      if @event
+        @cms_layout = @event.cms_layouts.find(params[:id])
+      else
+        @cms_layout = CmsLayout.global.find(params[:id])
+      end
+    end
   end
 end

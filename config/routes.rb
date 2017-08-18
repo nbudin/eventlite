@@ -24,5 +24,16 @@ Rails.application.routes.draw do
     end
   end
 
-  root to: 'events#index'
+  get 'admin' => 'admin#index'
+  cadmus_pages
+  resources :cms_files, only: [:index, :create, :destroy]
+  resources :cms_layouts
+  resources :navigation_items do
+    collection do
+      patch :sort
+    end
+  end
+  resource :site_settings
+
+  root to: 'root#index'
 end

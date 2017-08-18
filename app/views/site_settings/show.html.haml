@@ -1,0 +1,6 @@
+%h1 Site settings
+
+= bootstrap_form_for @site_settings, url: site_settings_path, method: 'patch' do |f|
+  = f.text_field :site_title
+
+  = f.submit 'Save', class: 'btn btn-primary'

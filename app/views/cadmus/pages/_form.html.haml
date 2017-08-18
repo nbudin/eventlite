@@ -10,8 +10,12 @@
 
 = f.text_field :name
 = f.text_field :slug, style: "font-family: monospace;"
-- default_layout_label = @event.default_cms_layout ? "Default (currently set as #{@event.default_cms_layout.name})" : "Default layout"
-= f.collection_select :cms_layout_id, @event.cms_layouts.order(:name), :id, :name, include_blank: default_layout_label, label: 'Layout'
+
+- if @event
+  - default_layout_label = @event.default_cms_layout ? "Default (currently set as #{@event.default_cms_layout.name})" : "Default layout"
+  = f.collection_select :cms_layout_id, @event.cms_layouts.order(:name), :id, :name, include_blank: default_layout_label, label: 'Layout'
+- else
+  = f.collection_select :cms_layout_id, CmsLayout.global.order(:name), :id, :name, include_blank: 'Default layout', label: 'Layout'
 
 .d-flex.flex-row.align-items-stretch.my-4
   = find_and_preserve(f.text_area(:content, :style => "min-height: 40vh; flex-grow: 1;", :class => "cadmus-previewable-html form-control-monospace", :"data-preview-in" => "html-preview", wrapper: { class: 'd-flex flex-column mr-2', style: 'min-width: 50%;' }))

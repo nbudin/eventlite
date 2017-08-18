@@ -46,7 +46,7 @@ class PagesController < ApplicationController
     @page.update_attributes(page_params)
 
     if @page.save
-      redirect_to event_pages_path(@event)
+      redirect_to action: 'index'
     else
       render template: 'cadmus/pages/edit'
     end
@@ -56,7 +56,7 @@ class PagesController < ApplicationController
     @page = page_scope.create(page_params)
 
     if @page.save
-      redirect_to event_pages_path(@event)
+      redirect_to action: 'index'
     else
       render template: 'cadmus/pages/new'
     end

@@ -1,4 +1,7 @@
-%h1 Pages in #{@event.name}
+- if @event
+  %h1 Pages in #{@event.name}
+- else
+  %h1 Pages
 
 %ul.list-group.mb-4
   - @pages.sort_by { |page| canonical_page_path(page) }.each do |page|

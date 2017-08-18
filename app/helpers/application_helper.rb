@@ -68,8 +68,10 @@ module ApplicationHelper
   end
 
   def canonical_page_path(page)
-    if page == page.parent.root_page
+    if page == page.parent&.root_page
       polymorphic_url(page.parent, routing_type: :path)
+    elsif page == Page.root
+      root_path
     else
       polymorphic_url([page.parent, page], routing_type: :path)
     end

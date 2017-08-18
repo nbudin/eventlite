@@ -14,8 +14,22 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  def site_settings
+    @site_settings ||= SiteSettings.instance
+  end
+  helper_method :site_settings
+
   def liquid_assigns
-    { 'event' => @event, 'page_title' => page_title }
+    common_assigns = {
+      'page_title' => page_title,
+      'site_title' => site_settings.site_title
+    }
+
+    if @event
+      common_assigns.merge('event' => @event)
+    else
+      common_assigns.merge('events' => Event.all.map(&:to_liquid))
+    end
   end
 
   def liquid_registers
@@ -23,7 +37,7 @@ class ApplicationController < ActionController::Base
   end
 
   def page_title
-    [@page_title, @event&.name || 'Eventlite'].compact.join(' - ')
+    [@page_title, @event&.name || site_settings.site_title].compact.join(' - ')
   end
   helper_method :page_title
 end

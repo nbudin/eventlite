@@ -6,12 +6,20 @@
           .card-body
             %h3.card-title Admin
             %nav.flex-column
-              = admin_nav_link_to "Event settings", edit_event_path(@event)
-              = admin_nav_link_to "Pages", event_pages_path(@event)
-              = admin_nav_link_to "Layouts", event_cms_layouts_path(@event)
-              = admin_nav_link_to "Files", event_cms_files_path(@event)
-              = admin_nav_link_to "Navigation bar", event_navigation_items_path(@event)
-              = admin_nav_link_to "Tickets", event_ticket_types_path(@event)
+              - if @event
+                = admin_nav_link_to "Event settings", edit_event_path(@event)
+                = admin_nav_link_to "Pages", event_pages_path(@event)
+                = admin_nav_link_to "Layouts", event_cms_layouts_path(@event)
+                = admin_nav_link_to "Files", event_cms_files_path(@event)
+                = admin_nav_link_to "Navigation bar", event_navigation_items_path(@event)
+                = admin_nav_link_to "Tickets", event_ticket_types_path(@event)
+              - else
+                = admin_nav_link_to "Site settings", site_settings_path
+                = admin_nav_link_to "Pages", pages_path
+                = admin_nav_link_to "Layouts", cms_layouts_path
+                = admin_nav_link_to "Files", cms_files_path
+                = admin_nav_link_to "Navigation bar", navigation_items_path
+
       .col
         = yield
 
