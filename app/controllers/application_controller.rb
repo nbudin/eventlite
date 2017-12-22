@@ -22,7 +22,8 @@ class ApplicationController < ActionController::Base
   def liquid_assigns
     common_assigns = {
       'page_title' => page_title,
-      'site_title' => site_settings.site_title
+      'site_title' => site_settings.site_title,
+      'current_user' => current_user
     }
 
     if @event
