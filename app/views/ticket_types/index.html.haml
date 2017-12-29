@@ -12,8 +12,9 @@
       = ticket_type.name
       (#{humanized_money_with_symbol(ticket_type.price, no_cents_if_whole: false)})
     .card-body
-      .progress
-        .progress-bar{role: 'progressbar', "aria-valuenow" => sold_count, "aria-valuemin" => 0, "aria-valuemax" => ticket_type.number_available, style: "width: #{((sold_count.to_f / ticket_type.number_available.to_f) * 100).round}%"}
+      - if ticket_type.number_available > 0
+        .progress
+          .progress-bar{role: 'progressbar', "aria-valuenow" => sold_count, "aria-valuemin" => 0, "aria-valuemax" => ticket_type.number_available, style: "width: #{((sold_count.to_f / ticket_type.number_available.to_f) * 100).round}%"}
       .text-right
         %small
           #{sold_count} / #{pluralize ticket_type.number_available, "ticket"}
