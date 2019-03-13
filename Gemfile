@@ -25,7 +25,7 @@ gem 'responders'
 
 gem 'acts_as_list'
 
-gem 'bootstrap_form', github: 'bootstrap-ruby/rails-bootstrap-forms', branch: 'bootstrap-v4'
+gem 'bootstrap_form'
 gem 'bootstrap', '~> 4.0.0.beta'
 gem "font-awesome-rails"
 #gem 'cadmus', '~> 0.6.0'
