@@ -26,7 +26,7 @@ gem 'responders'
 gem 'acts_as_list'
 
 gem 'bootstrap_form'
-gem 'bootstrap', '~> 4.0.0.beta'
+gem 'bootstrap', '~> 4.3.1'
 gem "font-awesome-rails"
 #gem 'cadmus', '~> 0.6.0'
 gem 'cadmus', github: 'gively/cadmus', branch: 'partials_and_layouts'
