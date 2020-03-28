@@ -1,7 +1,7 @@
 # config valid only for current version of Capistrano
 lock "3.9.0"
 
-set :rbenv_ruby, '2.4.0'
+set :rbenv_ruby, '2.6.2'
 set :rbenv_custom_path, "/opt/rbenv"
 
 set :application, "eventlite"
