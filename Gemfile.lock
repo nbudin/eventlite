@@ -130,7 +130,7 @@ GEM
     execjs (2.7.0)
     faraday (0.13.0)
       multipart-post (>= 1.2, < 3)
-    ffi (1.10.0)
+    ffi (1.15.5)
     font-awesome-rails (4.7.0.2)
       railties (>= 3.2, < 5.2)
     globalid (1.0.1)
