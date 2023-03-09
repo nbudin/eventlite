@@ -52,6 +52,7 @@ group :development, :test do
   gem 'capistrano-rails', '~> 1.2'
   gem 'capistrano-rbenv'
   gem 'capistrano-maintenance', require: false
+  gem 'ed25519'
   gem 'rbnacl', '~> 4.0'
   gem 'rbnacl-libsodium'
   gem 'bcrypt_pbkdf', '~> 1.0'
