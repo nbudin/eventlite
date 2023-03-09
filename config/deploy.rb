@@ -5,7 +5,7 @@ set :rbenv_ruby, '2.6.2'
 set :rbenv_custom_path, "/opt/rbenv"
 
 set :application, "eventlite"
-set :repo_url, "git@github.com:nbudin/eventlite.git"
+set :repo_url, "https://github.com/nbudin/eventlite.git"
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
