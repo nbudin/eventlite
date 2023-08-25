@@ -54,6 +54,7 @@ group :development, :test do
   gem 'capistrano-maintenance', require: false
   gem 'ed25519'
   gem 'bcrypt_pbkdf', '~> 1.0'
+  gem 'minitest-reporters'
 end
 
 group :development do
