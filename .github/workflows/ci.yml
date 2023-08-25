@@ -33,8 +33,6 @@ jobs:
           bundler-cache: true
       - name: Install node
         uses: actions/setup-node@v3
-      - name: Install libsodium23
-        run: sudo apt-get update && sudo apt-get install libsodium23
       - name: Database setup
         run: bundle exec rake db:create db:schema:load
       - name: Compile assets
