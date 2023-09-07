@@ -52,5 +52,4 @@ RUN useradd rails --create-home --shell /bin/bash && \
   chown -R rails:rails /rails
 USER rails:rails
 
-EXPOSE 3000
 CMD bundle exec bin/rails server -p $PORT -b 0.0.0.0

@@ -35,6 +35,7 @@ gem 'cadmus_navbar', github: 'nbudin/cadmus_navbar'
 gem 'haml'
 
 gem 'carrierwave'
+gem 'fog-aws'
 gem 'money-rails'
 gem 'stripe'
 gem 'with_advisory_lock'
