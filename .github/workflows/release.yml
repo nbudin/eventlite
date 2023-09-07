@@ -49,22 +49,26 @@ jobs:
           echo "FROM ghcr.io/${{ github.repository }}:${{ github.sha }}" >>Dockerfile.web
           echo "FROM ghcr.io/${{ github.repository }}:${{ github.sha }}" >>Dockerfile.release
           echo "RUN bundle exec bin/rails db:migrate" >>Dockerfile.release
-      - name: Build and push web image
+      - name: Build web image
         uses: docker/build-push-action@v4
         with:
           context: .
           file: Dockerfile.web
-          push: true
+          load: true
           platforms: linux/amd64
           tags: registry.heroku.com/${{ matrix.app }}/web
-      - name: Build and push release image
+      - name: Build release image
         uses: docker/build-push-action@v4
         with:
           context: .
           file: Dockerfile.release
-          push: true
+          load: true
           platforms: linux/amd64
           tags: registry.heroku.com/${{ matrix.app }}/release
+      - name: Push built images
+        run: |
+          docker push registry.heroku.com/${{ matrix.app }}/web
+          docker push registry.heroku.com/${{ matrix.app }}/release
       - name: Perform release
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
