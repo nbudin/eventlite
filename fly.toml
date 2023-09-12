@@ -1,0 +1,27 @@
+# fly.toml app configuration file generated for eventlite-occultopus on 2023-09-11T18:26:40-07:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = "eventlite-occultopus"
+primary_region = "iad"
+
+[build]
+image = "ghcr.io/nbudin/eventlite:latest"
+
+[deploy]
+release_command = "bundle exec rake db:migrate"
+strategy = "rolling"
+
+[env]
+PORT = "3000"
+RAILS_LOG_TO_STDOUT = "1"
+RAILS_SERVE_STATIC_FILES = "1"
+SITE_DOMAIN = "occultopus.org"
+
+[http_service]
+auto_start_machines = true
+auto_stop_machines = true
+force_https = true
+internal_port = 3000
+min_machines_running = 0
